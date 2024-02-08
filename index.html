@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Teste seus conhecimentos</h1>
+
+    <!-- resgata o modelo de quiz abaixo -->
+    <div id="quiz"></div>
+
+
+    <!-- Cria um modelo de quiz que eu vou resgatar futuramente -->
+    <template>
+      <div class="quiz-items">
+        <h3>Pergunta 01</h3>
+
+        <dl>
+          <dt>
+            <!-- a combinação do item (que vai ser utilizado em todos os inputs) com o valor permite escolher um valor só como resposta -->
+            <input type="radio" name="item" value="0" />
+            <span>Resposta A</span>
+          </dt>
+        </dl>
+      </div>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
