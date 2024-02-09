@@ -4,7 +4,7 @@ const perguntas = [
   {
     pergunta:
       "Qual palavra-chave é usada para declarar uma variável em JavaScript?",
-      // cria outra array dentro do objeto pra guardar as diferentes opções de resposta
+    // cria outra array dentro do objeto pra guardar as diferentes opções de resposta
     respostas: ["let", "var", "const"],
     correta: 2,
   },
@@ -73,18 +73,50 @@ const quiz = document.querySelector("#quiz")
 // resgata o template do quiz
 const template = document.querySelector("template")
 
+// cria um tipo de objeto específico salvando apenas 1 informação. Ou seja, ao selecionar uma opção, mesmo que eu mude a resposta, ele só salva 1
+const corretas = new Set()
+
+// conta o total de itens dentro de perguntas (1-10)
+const totalDePerguntas = perguntas.length
+// seleciona apenas o span dentro de #acertos e mostra as corretas de acordo com o total de perguntas
+const mostrarTotal = document.querySelector("#acertos span")
+mostrarTotal.textContent = corretas.size + " de " + totalDePerguntas
+
 // vai gerar um loop pra cada pergunta
 for (const item of perguntas) {
   // copia todo conteúdo dentro do template
   const quizItem = template.content.cloneNode(true)
   // altera o título das perguntas de acordo com o array acima
   quizItem.querySelector("h3").textContent = item.pergunta
-    
+
   // gera um loop pra cada resposta (basicamente, coloca elas no código)
   for (let resposta of item.respostas) {
     // copia cada dt e altera a sua resposta de acordo com o item.respostas declarado no loop
     const dt = quizItem.querySelector("dl dt").cloneNode(true)
     dt.querySelector("span").textContent = resposta
+
+    // name vira o attr adicionado, pergunta- adiciona com o index da pergunta (0-9)
+    dt.querySelector("input").setAttribute(
+      "name",
+      "pergunta-" + perguntas.indexOf(item)
+    )
+
+    // o value vai mudar de acordo com quantidade de respostas (0-2)
+    dt.querySelector("input").value = item.respostas.indexOf(resposta)
+
+    // quando ocorrer uma mudança, vai executar o evento dentro do bloco da função
+    dt.querySelector("input").onchange = (event) => {
+      // constante que verifica se o evento selecionado é igual ao item dito como correta antes (sem considerar string ou number {==})
+      const estaCorreta = event.target.value == item.correta
+
+      // o delete serve pra resetar as respostas, enquanto o add diz se a opção tá certa ou errada
+      corretas.delete(item)
+      if (estaCorreta) {
+        corretas.add(item)
+      }
+
+      mostrarTotal.textContent = corretas.size + " de " + totalDePerguntas
+    }
 
     // adiciona um novo filho pro dl de acordo com a quantidade de respostas(3)
     quizItem.querySelector("dl").appendChild(dt)

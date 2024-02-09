@@ -10,26 +10,32 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Teste seus conhecimentos</h1>
+    <main>
+      <h1>Teste seus conhecimentos</h1>
 
-    <!-- resgata o modelo de quiz abaixo -->
-    <div id="quiz"></div>
+      <!-- resgata o modelo de quiz abaixo -->
+      <div id="quiz"></div>
 
+      <!-- Cria um modelo de quiz que eu vou resgatar futuramente -->
+      <template>
+        <div class="quiz-items">
+          <h3>Pergunta 01</h3>
 
-    <!-- Cria um modelo de quiz que eu vou resgatar futuramente -->
-    <template>
-      <div class="quiz-items">
-        <h3>Pergunta 01</h3>
+          <dl>
+            <dt>
+              <!-- a combinação do item (que vai ser utilizado em todos os inputs) com o valor permite escolher um valor só como resposta -->
+              <input type="radio" name="item" value="0" />
+              <span>Resposta A</span>
+            </dt>
+          </dl>
+        </div>
+      </template>
 
-        <dl>
-          <dt>
-            <!-- a combinação do item (que vai ser utilizado em todos os inputs) com o valor permite escolher um valor só como resposta -->
-            <input type="radio" name="item" value="0" />
-            <span>Resposta A</span>
-          </dt>
-        </dl>
+      <div id="acertos">
+        <strong>Acertos</strong>
+        <span>0 de 10</span>
       </div>
-    </template>
+    </main>
 
     <script src="script.js"></script>
   </body>
