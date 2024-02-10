@@ -3,7 +3,7 @@ const perguntas = [
   // cada {} representa um objeto com "variáveis" dentro
   {
     pergunta:
-      "Qual palavra-chave é usada para declarar uma variável em JavaScript?",
+      "Qual palavra-chave é usada para declarar uma variável imutável em JavaScript?",
     // cria outra array dentro do objeto pra guardar as diferentes opções de resposta
     respostas: ["let", "var", "const"],
     correta: 2,
